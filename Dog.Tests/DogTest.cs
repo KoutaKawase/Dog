@@ -31,9 +31,5 @@ namespace Dog.Tests
 
             Assert.AreNotEqual("HELP", result);
         }
-
-        public void コマンドライン引数を渡したらファイル名が返ってくる()
-        {
-        }
     }
 }
