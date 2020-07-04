@@ -23,6 +23,7 @@ namespace Dog
         {
             var options = _args.Where(e =>
             {
+                //-a -b -C -Dとかだけマッチさせたいので --a や -2は弾く
                 return Regex.IsMatch(e, "^-{1}[a-z|A-Z]");
             })
             .Select(e => e.Trim('-'))

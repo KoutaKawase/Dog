@@ -16,5 +16,13 @@ namespace Dog.Tests
             Assert.AreEqual(new List<String>(new[] { "A", "B", "C" }), options);
             Assert.AreEqual(new List<String>(new[] { "hoge.cs", "fuga" }), files);
         }
+
+        public void オプションが指定した形式以外ならはじかれているか()
+        {
+            var args = new Args(new List<String>(new[] { "--A", "-2", "-hoge", "-c" }));
+            (var options, _) = args.Separate();
+
+            Assert.AreEqual(new List<String>(new[] { "c" }), options);
+        }
     }
 }

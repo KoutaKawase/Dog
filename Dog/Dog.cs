@@ -15,6 +15,7 @@ namespace Dog
         public String Run()
         {
             if (_args.IsEmpty()) return ShowHelp();
+            (var options, var files) = _args.Separate();
             return "Result";
         }
 
