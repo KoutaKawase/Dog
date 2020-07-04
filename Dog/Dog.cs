@@ -5,16 +5,16 @@ namespace Dog
 {
     public class Dog
     {
-        private readonly List<String> _args;
+        private readonly Args _args;
 
-        public Dog(List<String> args)
+        public Dog(Args args)
         {
             _args = args;
         }
 
         public String Run()
         {
-            if (_args.Count == 0) return ShowHelp();
+            if (_args.IsEmpty()) return ShowHelp();
             return "Result";
         }
 

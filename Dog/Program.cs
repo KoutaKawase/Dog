@@ -7,7 +7,8 @@ namespace Dog
     {
         static void Main(string[] args)
         {
-            var dog = new Dog(new List<String>(args));
+            var argList = new Args(new List<String>(args));
+            var dog = new Dog(argList);
             var result = dog.Run();
             Console.WriteLine(result);
         }

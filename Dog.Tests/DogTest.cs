@@ -15,7 +15,7 @@ namespace Dog.Tests
         [Test]
         public void コマンドライン引数がなければヘルプを表示()
         {
-            var args = new List<String>();
+            var args = new Args(new List<String>(new String[] { }));
             var dog = new Dog(args);
             var result = dog.Run();
 
@@ -25,11 +25,15 @@ namespace Dog.Tests
         [Test]
         public void コマンドライン引数があればヘルプが表示されない()
         {
-            var args = new List<String>(new String[] { "hoge" });
+            var args = new Args(new List<String>(new String[] { "hoge" }));
             var dog = new Dog(args);
             var result = dog.Run();
 
             Assert.AreNotEqual("HELP", result);
+        }
+
+        public void コマンドライン引数を渡したらファイル名が返ってくる()
+        {
         }
     }
 }
