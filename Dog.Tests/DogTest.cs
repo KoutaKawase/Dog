@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using Dog;
 
@@ -5,17 +7,29 @@ namespace Dog.Tests
 {
     public class DogTest
     {
-        private Dog _dog;
         [SetUp]
         public void Setup()
         {
-            _dog = new Dog();
         }
 
         [Test]
-        public void Test1()
+        public void コマンドライン引数がなければヘルプを表示()
         {
-            Assert.AreEqual("RUN", _dog.Run());
+            var args = new List<String>();
+            var dog = new Dog(args);
+            var result = dog.Run();
+
+            Assert.AreEqual("HELP", result);
+        }
+
+        [Test]
+        public void コマンドライン引数があればヘルプが表示されない()
+        {
+            var args = new List<String>(new String[] { "hoge" });
+            var dog = new Dog(args);
+            var result = dog.Run();
+
+            Assert.AreNotEqual("HELP", result);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Dog
 {
@@ -6,7 +7,9 @@ namespace Dog
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var dog = new Dog(new List<String>(args));
+            var result = dog.Run();
+            Console.WriteLine(result);
         }
     }
 }
