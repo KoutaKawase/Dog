@@ -12,21 +12,5 @@ namespace Dog
         {
             _options = options;
         }
-
-        public override bool Equals(object? obj)
-        {
-            if (obj == null || GetType() != obj.GetType())
-            {
-                return false;
-            }
-
-            var other = (Options)obj;
-            return _options == other.Value;
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Value);
-        }
     }
 }
