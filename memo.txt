@@ -4,3 +4,9 @@
 オプションの挙動に合わせてファイル名から内容を表示（オプション挙動は外部から注入？）
 
 dog -A -B -C hoge.cs fuga dummy -D => List[{"A", "B", "C", "D"}, {"hoge.cs", "fuga", "dummy"}]
+
+テストコードからテストプロジェクトのディレクトリーを参照する方法をあとでまとめる
+
+https://stackoverflow.com/questions/41967946/how-to-get-c-sharp-net-core-project-directory-path-in-visual-studio-2017-rc3
+
+普通に Run したら/home/suhrkawase/work/projects/Dog が手に入るがテストコードからだと/home/suhrkawase/work/projects/Dog.Tests/bin/~...みたいになる
