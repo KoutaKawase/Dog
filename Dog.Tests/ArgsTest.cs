@@ -11,16 +11,19 @@ namespace Dog.Tests
         public void オプションとそれ以外を渡したら２つをタプルで返す()
         {
             var args = new Args(new List<String>(new[] { "-A", "-B", "hoge.cs", "-C", "fuga" }));
-            (List<String> options, List<String> files) = args.Separate();
+            (Options options, Files files) = args.Separate();
 
-            Assert.AreEqual(new List<String>(new[] { "A", "B", "C" }), options);
-            Assert.AreEqual(new List<String>(new[] { "hoge.cs", "fuga" }), files);
+            var expectedOptions = new Options(new List<String>(new[] { "A", "B", "C" }));
+            var exptectedFiles = new Files(new List<String>(new[] { "hoge.cs", "fuga" }));
+
+            Assert.AreEqual(expectedOptions.Value, options.Value);
+            Assert.AreEqual(exptectedFiles.Value, files.Value);
         }
 
         public void オプションが指定した形式以外ならはじかれているか()
         {
             var args = new Args(new List<String>(new[] { "--A", "-2", "-hoge", "-c" }));
-            (var options, _) = args.Separate();
+            (Options options, _) = args.Separate();
 
             Assert.AreEqual(new List<String>(new[] { "c" }), options);
         }

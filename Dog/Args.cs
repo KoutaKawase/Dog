@@ -19,7 +19,7 @@ namespace Dog
             return _args.Count == 0;
         }
 
-        public (List<String> options, List<String> files) Separate()
+        public (Options options, Files files) Separate()
         {
             var options = _args.Where(e =>
             {
@@ -29,9 +29,12 @@ namespace Dog
             .Select(e => e.Trim('-'))
             .ToList();
 
-            var files = new List<String>(new[] { "hoge.cs", "fuga" });
+            var files = _args.Where(e =>
+            {
+                return !Regex.IsMatch(e, "^-{1}[a-z|A-Z]");
+            }).ToList();
 
-            return (options, files);
+            return (new Options(options), new Files(files));
         }
     }
 }
