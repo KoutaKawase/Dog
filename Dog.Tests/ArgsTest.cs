@@ -20,12 +20,15 @@ namespace Dog.Tests
             Assert.AreEqual(exptectedFiles.Value, files.Value);
         }
 
+        [Test]
         public void オプションが指定した形式以外ならはじかれているか()
         {
             var args = new Args(new List<String>(new[] { "--A", "-2", "-hoge", "-c" }));
             (Options options, _) = args.Separate();
 
-            Assert.AreEqual(new List<String>(new[] { "c" }), options);
+            var expectedOptions = new Options(new List<String>(new[] { "c" }));
+
+            Assert.AreEqual(expectedOptions.Value, options.Value);
         }
     }
 }

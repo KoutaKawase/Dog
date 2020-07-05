@@ -21,17 +21,18 @@ namespace Dog
 
         public (Options options, Files files) Separate()
         {
+            var regex = "^-{1}[a-z|A-Z]$";
             var options = _args.Where(e =>
             {
                 //-a -b -C -Dとかだけマッチさせたいので --a や -2は弾く
-                return Regex.IsMatch(e, "^-{1}[a-z|A-Z]");
+                return Regex.IsMatch(e, regex);
             })
             .Select(e => e.Trim('-'))
             .ToList();
 
             var files = _args.Where(e =>
             {
-                return !Regex.IsMatch(e, "^-{1}[a-z|A-Z]");
+                return !Regex.IsMatch(e, regex);
             }).ToList();
 
             return (new Options(options), new Files(files));
