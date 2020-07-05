@@ -34,7 +34,25 @@ namespace Dog.Tests
         }
 
         [Test]
-        public void 渡された名前にディレクトリが存在すれば例外()
-        { }
+        public void 渡された名前にディレクトリが存在すればtrue()
+        {
+            var dir = _fixturesPath;
+            var hoge = Path.Combine(_fixturesPath, "hoge.cs");
+            var files = new Files(new List<String>(new[] { dir, hoge }));
+            var result = files.ContainDir();
+
+            Assert.True(result);
+        }
+
+        [Test]
+        public void 渡されたものにディレクトリが含まれなかったらfalse()
+        {
+            var hoge = Path.Combine(_fixturesPath, "hoge.cs");
+            var fuga = Path.Combine(_fixturesPath, "fuga.json");
+            var none = Path.Combine(_fixturesPath, "none.none");
+            var files = new Files(new List<String>(new[] { fuga, hoge, none }));
+
+            Assert.False(files.ContainDir());
+        }
     }
 }

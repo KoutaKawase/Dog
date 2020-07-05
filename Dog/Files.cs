@@ -18,11 +18,15 @@ namespace Dog
         //全てのファイル名が実在するものか検査するためのもの
         public bool Exists()
         {
-            var exists = _files.All(file =>
-            {
-                return File.Exists(file);
-            });
+            var exists = _files.All(file => File.Exists(file));
             return exists;
+        }
+
+        public bool ContainDir()
+        {
+            //一つでもディレクトリであるものがあればリジェクトしたい
+            var containsDir = _files.Any(file => Directory.Exists(file));
+            return containsDir;
         }
     }
 }
