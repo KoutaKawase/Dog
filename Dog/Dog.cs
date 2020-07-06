@@ -30,13 +30,13 @@ namespace Dog
         private static String ShowContainsDirMessage(Files files)
         {
             var dirs = files.GetOnlyDirectories();
-            var sb = new StringBuilder("");
+            var message = "";
             dirs.ForEach(dir =>
             {
-                var message = $"{dir}はディレクトリであり無効な引数です\n";
-                sb.Append(message);
+                var warningMessage = $"{dir}はディレクトリであり無効な引数です\n";
+                message += warningMessage;
             });
-            return sb.ToString();
+            return message;
         }
     }
 }
