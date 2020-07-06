@@ -48,29 +48,37 @@ namespace Dog
 
             _files.ForEach(file =>
             {
-                try
+                sb.Append(ReadLine(file));
+            });
+            return sb.ToString();
+        }
+
+        private static String ReadLine(String file)
+        {
+            var sb = new StringBuilder("");
+            try
+            {
+                using (var sr = new StreamReader(file))
                 {
-                    using (var sr = new StreamReader(file))
+                    while (sr.Peek() > -1)
                     {
-                        while (sr.Peek() > -1)
-                        {
-                            var line = sr.ReadLine();
-                            sb.Append(line);
-                            sb.AppendLine();
-                        }
+                        var line = sr.ReadLine();
+                        sb.Append(line);
+                        sb.AppendLine();
                     }
                 }
-                catch (IOException e)
-                {
-                    Console.Error.WriteLine(e.Message);
-                    Environment.Exit(1);
-                }
-                catch (UnauthorizedAccessException e)
-                {
-                    Console.Error.WriteLine(e.Message);
-                    Environment.Exit(126);
-                }
-            });
+            }
+            catch (IOException e)
+            {
+                Console.Error.WriteLine(e.Message);
+                Environment.Exit(1);
+            }
+            catch (UnauthorizedAccessException e)
+            {
+                Console.Error.WriteLine(e.Message);
+                Environment.Exit(126);
+            }
+
             return sb.ToString();
         }
     }
