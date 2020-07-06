@@ -70,16 +70,20 @@ namespace Dog
             }
             catch (IOException e)
             {
-                Console.Error.WriteLine(e.Message);
-                Environment.Exit(1);
+                Exit(e, 1);
             }
             catch (UnauthorizedAccessException e)
             {
-                Console.Error.WriteLine(e.Message);
-                Environment.Exit(126);
+                Exit(e, 126);
             }
 
             return sb.ToString();
+        }
+
+        private static void Exit(Exception e, int exitCode)
+        {
+            Console.Error.WriteLine(e.Message);
+            Environment.Exit(exitCode);
         }
     }
 }
