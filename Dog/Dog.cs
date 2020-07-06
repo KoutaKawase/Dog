@@ -16,8 +16,8 @@ namespace Dog
         public String Run()
         {
             if (_args.IsEmpty()) return ShowHelp();
-            if (_args.ContainsVersionArg()) return "VERSION";
             (var options, var files) = _args.Separate();
+            if (options.ContainsVersionOption()) return "VERSION";
             if (files.ContainDir()) return ShowContainsDirMessage(files);
             if (!files.Exists()) return ShowNofileMessage(files);
             String result = files.Read();

@@ -33,9 +33,9 @@ namespace Dog.Tests
         }
 
         [Test]
-        public void vオプションが存在すればバージョン情報を返す()
+        public void バージョンオプションがあればRunはversion情報を返す()
         {
-            var args = new Args(new List<String>(new[] { "-a", "-v" }));
+            var args = new Args(new List<String>(new[] { "-v", "fuga" }));
             var dog = new Dog(args);
             var result = dog.Run();
 
