@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Dog
 {
@@ -28,7 +29,14 @@ namespace Dog
 
         private static String ShowContainsDirMessage(Files files)
         {
-            return "ディレクトリが含まれています";
+            var dirs = files.GetOnlyDirectories();
+            var sb = new StringBuilder("");
+            dirs.ForEach(dir =>
+            {
+                var message = $"{dir}はディレクトリであり無効な引数です\n";
+                sb.Append(message);
+            });
+            return sb.ToString();
         }
     }
 }
