@@ -70,7 +70,6 @@ namespace Dog
                     Console.Error.WriteLine(e.Message);
                     Environment.Exit(126);
                 }
-                sb.AppendLine();
             });
             return sb.ToString();
         }
