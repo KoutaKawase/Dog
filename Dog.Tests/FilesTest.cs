@@ -54,5 +54,27 @@ namespace Dog.Tests
 
             Assert.False(files.ContainDir());
         }
+
+        [Test]
+        public void 渡されたものの中からディレクトリだけが抽出されているか()
+        {
+            var dir = _fixturesPath;
+            var dir2 = Path.Combine(_fixturesPath, "emptyDir");
+            var hoge = Path.Combine(_fixturesPath, "hoge.cs");
+            var files = new Files(new List<String>(new[] { dir, dir2, hoge }));
+            var dirs = files.GetOnlyDirectories();
+
+            Assert.AreEqual(new List<String>(new[] { dir, dir2 }), dirs);
+        }
+
+        [Test]
+        public void 渡されたものにディレクトリがなかったら空のリストを返すか()
+        {
+            var hoge = Path.Combine(_fixturesPath, "hoge.cs");
+            var files = new Files(new List<String>(new[] { hoge }));
+            var dirs = files.GetOnlyDirectories();
+
+            Assert.AreEqual(new List<String>(), dirs);
+        }
     }
 }

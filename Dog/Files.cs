@@ -28,5 +28,11 @@ namespace Dog
             var containsDir = _files.Any(file => Directory.Exists(file));
             return containsDir;
         }
+
+        public List<String> GetOnlyDirectories()
+        {
+            var dirs = _files.Where(file => Directory.Exists(file)).ToList();
+            return dirs;
+        }
     }
 }

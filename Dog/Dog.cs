@@ -16,12 +16,19 @@ namespace Dog
         {
             if (_args.IsEmpty()) return ShowHelp();
             (var options, var files) = _args.Separate();
+            if (files.ContainDir()) return ShowContainsDirMessage(files);
+            if (!files.Exists()) return "No file";
             return "Result";
         }
 
-        public static String ShowHelp()
+        private static String ShowHelp()
         {
             return "HELP";
+        }
+
+        private static String ShowContainsDirMessage(Files files)
+        {
+            return "ディレクトリが含まれています";
         }
     }
 }
