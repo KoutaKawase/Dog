@@ -37,5 +37,10 @@ namespace Dog
 
             return (new Options(options), new Files(files));
         }
+
+        public bool ContainsVersionArg()
+        {
+            return true;
+        }
     }
 }

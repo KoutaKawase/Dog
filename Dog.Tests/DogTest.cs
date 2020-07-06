@@ -31,5 +31,15 @@ namespace Dog.Tests
 
             Assert.AreNotEqual("HELP", result);
         }
+
+        [Test]
+        public void vオプションが存在すればバージョン情報を返す()
+        {
+            var args = new Args(new List<String>(new[] { "-a", "-v" }));
+            var dog = new Dog(args);
+            var result = dog.Run();
+
+            Assert.AreEqual("VERSION", result);
+        }
     }
 }
