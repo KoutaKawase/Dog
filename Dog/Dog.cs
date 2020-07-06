@@ -18,7 +18,7 @@ namespace Dog
             if (_args.IsEmpty()) return ShowHelp();
             (var options, var files) = _args.Separate();
             if (files.ContainDir()) return ShowContainsDirMessage(files);
-            if (!files.Exists()) return "No file";
+            if (!files.Exists()) return ShowNofileMessage(files);
             return "Result";
         }
 
@@ -34,6 +34,18 @@ namespace Dog
             dirs.ForEach(dir =>
             {
                 var warningMessage = $"{dir}はディレクトリであり無効な引数です\n";
+                message += warningMessage;
+            });
+            return message;
+        }
+
+        private static String ShowNofileMessage(Files files)
+        {
+            var invalidFiles = files.GetOnlyInvalidFiles();
+            var message = "";
+            invalidFiles.ForEach(file =>
+            {
+                var warningMessage = $"{file}は存在しないファイルです";
                 message += warningMessage;
             });
             return message;

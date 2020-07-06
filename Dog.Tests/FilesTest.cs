@@ -76,5 +76,16 @@ namespace Dog.Tests
 
             Assert.AreEqual(new List<String>(), dirs);
         }
+
+        [Test]
+        public void 無効なファイル名のみが抽出されているか()
+        {
+            var hoge = Path.Combine(_fixturesPath, "hoge.cs");
+            var none = Path.Combine(_fixturesPath, "none.none");
+            var files = new Files(new List<String>(new[] { hoge, none }));
+            var expectedFiles = files.GetOnlyInvalidFiles();
+
+            Assert.AreEqual(new List<String>(new[] { none }), expectedFiles);
+        }
     }
 }

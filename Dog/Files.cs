@@ -34,5 +34,11 @@ namespace Dog
             var dirs = _files.Where(file => Directory.Exists(file)).ToList();
             return dirs;
         }
+
+        public List<String> GetOnlyInvalidFiles()
+        {
+            var invalidFiles = _files.Where(file => !File.Exists(file)).ToList();
+            return invalidFiles;
+        }
     }
 }
