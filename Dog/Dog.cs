@@ -20,7 +20,8 @@ namespace Dog
             if (options.ContainsVersionOption()) return "VERSION";
             if (files.ContainDir()) return ShowContainsDirMessage(files);
             if (!files.Exists()) return ShowNofileMessage(files);
-            String result = files.Read();
+
+            String result = options.ContainsNumberOption() ? files.Read(Line.AddLineNumber) : files.Read();
             return result;
         }
 
