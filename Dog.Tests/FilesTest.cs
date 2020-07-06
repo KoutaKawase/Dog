@@ -95,7 +95,7 @@ namespace Dog.Tests
             var fuga = Path.Combine(_fixturesPath, "fuga.txt");
             var files = new Files(new List<String>(new[] { hoge, fuga }));
             var result = files.Read();
-            var expected = "hoge\nfuga\n";
+            var expected = "hoge\n\nfuga\n\n";
 
             Assert.AreEqual(expected, result);
         }

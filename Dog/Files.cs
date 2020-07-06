@@ -52,8 +52,12 @@ namespace Dog
                 {
                     using (var sr = new StreamReader(file))
                     {
-                        var line = sr.ReadToEnd();
-                        sb.Append(line);
+                        while (sr.Peek() > -1)
+                        {
+                            var line = sr.ReadLine();
+                            sb.Append(line);
+                            sb.AppendLine();
+                        }
                     }
                 }
                 catch (IOException e)
