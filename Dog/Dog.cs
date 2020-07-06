@@ -19,7 +19,8 @@ namespace Dog
             (var options, var files) = _args.Separate();
             if (files.ContainDir()) return ShowContainsDirMessage(files);
             if (!files.Exists()) return ShowNofileMessage(files);
-            return "Result";
+            String result = files.Read();
+            return result;
         }
 
         private static String ShowHelp()

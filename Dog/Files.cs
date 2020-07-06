@@ -44,7 +44,6 @@ namespace Dog
 
         public String Read()
         {
-            var encoding = Encoding.UTF8;
             var sb = new StringBuilder("");
 
             _files.ForEach(file =>
@@ -59,8 +58,13 @@ namespace Dog
                 }
                 catch (IOException e)
                 {
-                    Console.Error.WriteLine($"{file}: The file could not be read:");
                     Console.Error.WriteLine(e.Message);
+                    Environment.Exit(1);
+                }
+                catch (UnauthorizedAccessException e)
+                {
+                    Console.Error.WriteLine(e.Message);
+                    Environment.Exit(126);
                 }
                 sb.AppendLine();
             });
