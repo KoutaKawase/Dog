@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.Text;
 
 namespace Dog
 {
@@ -39,6 +40,31 @@ namespace Dog
         {
             var invalidFiles = _files.Where(file => !File.Exists(file)).ToList();
             return invalidFiles;
+        }
+
+        public String Read()
+        {
+            var encoding = Encoding.UTF8;
+            var sb = new StringBuilder("");
+
+            _files.ForEach(file =>
+            {
+                try
+                {
+                    using (var sr = new StreamReader(file))
+                    {
+                        var line = sr.ReadToEnd();
+                        sb.Append(line);
+                    }
+                }
+                catch (IOException e)
+                {
+                    Console.Error.WriteLine($"{file}: The file could not be read:");
+                    Console.Error.WriteLine(e.Message);
+                }
+                sb.AppendLine();
+            });
+            return sb.ToString();
         }
     }
 }
