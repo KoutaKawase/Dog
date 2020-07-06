@@ -13,3 +13,9 @@ dog -A -B -C hoge.cs fuga dummy -D => List[{"A", "B", "C", "D"}, {"hoge.cs", "fu
 https://stackoverflow.com/questions/41967946/how-to-get-c-sharp-net-core-project-directory-path-in-visual-studio-2017-rc3
 
 普通に Run したら/home/suhrkawase/work/projects/Dog が手に入るがテストコードからだと/home/suhrkawase/work/projects/Dog.Tests/bin/~...みたいになる
+
+
+dog hoge.txt -n
+
+optionをパース
+nが存在すればReadメソッドにオーバーロードを利用してnの振る舞いを持つメソッドを注入

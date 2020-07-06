@@ -42,20 +42,21 @@ namespace Dog
             return invalidFiles;
         }
 
-        public String Read()
+        public String Read(Func<String?, int, String>? optionFunc = null)
         {
             var sb = new StringBuilder("");
 
             _files.ForEach(file =>
             {
-                sb.Append(ReadLine(file));
+                sb.Append(ReadLines(file, optionFunc));
             });
             return sb.ToString();
         }
 
-        private static String ReadLine(String file)
+        private static String ReadLines(String file, Func<String?, int, String>? func)
         {
             var sb = new StringBuilder("");
+            var lineNumber = 1;
             try
             {
                 using (var sr = new StreamReader(file))
@@ -63,6 +64,11 @@ namespace Dog
                     while (sr.Peek() > -1)
                     {
                         var line = sr.ReadLine();
+                        if (func != null)
+                        {
+                            line = func(line, lineNumber);
+                            lineNumber += 1;
+                        }
                         sb.Append(line);
                         sb.AppendLine();
                     }
